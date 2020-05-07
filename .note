@@ -1,0 +1,46 @@
+pointer是C最強大的觀念。
+一般講*是取值，&是取位置，雖然沒有錯，但是不夠完整，這樣懂一定會一直碰到坑。
+你要先瞭解兩個重點，
+笫一，*, & 用在type和用在variable不一樣，一定要先分清楚。（Go和C，&都只用在variable，但C++的&也用在type，我們這裡不討論C++)
+第二，pointer variable下的值，只是另一個相容variable 的位置。(所以使用pointer到基本的type，像int，其實是多了一份記憶空間。)
+比如
+var p *int // * 用在type，宣告一個pointer變數p
+然後使用pointer
+*p // reference to nil error
+你會得到一個reference to nil的錯誤，因為pointer宣告，只給你一個內可存int address的variable，初使值為nil。
+你要有int 的var讓pointer存它的位置，才能使用pointer。所以，
+i := 1
+p = &i. // p 存的是i 的 address, ,注意這種assign方式和func 參數的呼叫方式一樣，func的呼叫就是隱藏一個assignment 的動作。
+*p // 現正值才是1，* 用在變數，變數(值)指向位置(此為一整數變數)下的值
+*p = 2 // i 的值也變成2，* 用在變數，變數(值)指向位置(此為一整數變數)下的值被改掉
+嚴格説這就是pointer的所有規則，但是它的所有效應會有變化莫測的感覺，要一一碰到時去理解。
+比如上面的pointer使用雖有益學習，但有點囉唆，在local這樣作就可以
+i := 1
+p := &i. // 自動宣告p 為pointer type，並將i 的位置存入，
+*p = 2 // i 的值也是 2
+也可以用new
+p := new(int) // new 宣告一個沒有名稱的int 變數，把位置傳出來，這也是Java隱藏pointer和memory allocation 的作法。
+*p // 這樣沒有問題，值是0, 因為是無名int變數的初值
+有一個練習pointer很好的function是swap
+如果你寫
+func swap（i, j int) {
+i, j = j, i
+}
+然後呼叫該function
+i, j := 1, 2
+swap(i, j)
+// 這𥚃i, j還是1，2沒變，為什麼？
+因為這就是所謂call by value，
+swap外的i, j （同樣變數名稱，但是不同scope)是將它們的值考貝一份到swap內的i, j，所以即使swap 內的i, j值交換，和swap外的i, j無關。
+當然Go有multiple variable assignment，不用把swap寫成func，如果在C的時代，你要swap值要先學會pointer，
+func swap(i, j *int) {
+temp := *i
+*i = *j
+*j = temp
+}
+然後這樣呼叫swap
+i, j := 1, 2
+swap(&i, &j) // 呼叫方式和上面的assignment方式一樣
+// 這樣 i, j 的值交換了
+這樣看懂了嗎？很多人C學到swap就陣亡了。
+當然pointer最大的好處不是用在basic types ，而是在大記憶容量的type，這樣在function間傳喚這只要考貝pointer，但原理和前面的例子一樣。
