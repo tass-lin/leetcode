@@ -12,9 +12,31 @@ func distributeCandies(candies []int) int {
 	return len(m)
 }
 
+
+func distributeCandies1(candies []int) int {
+	m := make(map[int]bool,len(candies))
+
+	for _, element := range candies {
+		m[element] = true
+	}
+
+	return min(len(m), len(candies)/2)
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func main() {
 	println(distributeCandies([]int{1,1,2,2,3,3})) // 3
 	println(distributeCandies([]int{1,1,2,3})) // 2
+
+
+	println(distributeCandies1([]int{1,1,2,2,3,3})) // 3
+	println(distributeCandies1([]int{1,1,2,3})) // 2
 }
 
 // Given an integer array with even length,
