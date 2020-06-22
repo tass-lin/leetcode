@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func maximumProduct(nums []int) int {
@@ -39,10 +40,21 @@ func maxFunc(a, b int) int {
 	return b
 }
 
+func maximumProduct1(nums []int) int {
+	sort.Ints(nums)
+
+	return maxFunc(nums[0] * nums[1] * nums[len(nums)-1], nums[len(nums)-3] * nums[len(nums)-2] * nums[len(nums)-1])
+}
+
 func main() {
 	fmt.Println(maximumProduct([]int{1,2,3})) // 6
 	fmt.Println(maximumProduct([]int{1,2,3,4})) // 24
 	fmt.Println(maximumProduct([]int{-4,-3,-2,-1,60})) // 720
+
+
+	fmt.Println(maximumProduct1([]int{1,2,3})) // 6
+	fmt.Println(maximumProduct1([]int{1,2,3,4})) // 24
+	fmt.Println(maximumProduct1([]int{-4,-3,-2,-1,60})) // 720
 }
 
 // Given an integer array, find three numbers whose product is maximum and output the maximum product.
