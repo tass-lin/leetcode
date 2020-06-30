@@ -1,7 +1,6 @@
-package main
+package problem0682
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -27,10 +26,6 @@ func calPoints(ops []string) int {
 	return res
 }
 
-func main() {
-	fmt.Println(calPoints([]string{"5","2","C","D","+"})) // 30
-	fmt.Println(calPoints([]string{"5","-2","4","C","D","9","+","+"})) // 27
-}
 
 // You're now a baseball game point recorder.
 // Given a list of strings, each string can be one of the 4 following types:
