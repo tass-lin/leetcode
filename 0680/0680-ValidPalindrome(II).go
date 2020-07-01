@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func validPalindrome(s string) bool {
 	var temp int
 	i, j := 0, len(s) - 1
@@ -68,33 +64,18 @@ func check(s string) bool {
 	}
 	return true
 }
+/*
+Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
 
-func main() {
-	fmt.Println(validPalindrome("aba")) // true
-	fmt.Println(validPalindrome("abca")) // true
-	fmt.Println(validPalindrome("tebbem")) // false
-	fmt.Println(validPalindrome("abc")) // false
-	fmt.Println(validPalindrome("abcbac")) // true
-	fmt.Println(validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga")) // true
+Example 1:
+Input: "aba"
+Output: True
 
-	fmt.Println(validPalindrome1("aba")) // true
-	fmt.Println(validPalindrome1("abca")) // true
-	fmt.Println(validPalindrome1("tebbem")) // false
-	fmt.Println(validPalindrome1("abc")) // false
-	fmt.Println(validPalindrome1("abcbac")) // true
-	fmt.Println(validPalindrome1("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga")) // true
-}
+Example 2:
+Input: "abca"
+Output: True
+Explanation: You could delete the character 'c'.
 
-// Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
-//
-// Example 1:
-// Input: "aba"
-// Output: True
-//
-// Example 2:
-// Input: "abca"
-// Output: True
-// Explanation: You could delete the character 'c'.
-//
-// Note:
-// The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
+Note:
+The string will only contain lowercase characters a-z. The maximum length of the string is 50000.
+*/
